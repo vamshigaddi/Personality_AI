@@ -9,7 +9,7 @@ A modular AI system that:
 3. **Transforms assistant replies** into custom personalities  
    (calm mentor, witty friend, therapist, confident coach)
 
-This project showcases **memory systems**, **reasoning**, **prompt design**, **API architecture**, and **personality-controlled responses** — core skills for Companion-AI systems.
+- This project showcases **memory systems**, **reasoning**, **prompt design**, **API architecture**, and **personality-controlled responses** — core skills for Companion-AI systems.
 
 ---
 
@@ -62,7 +62,7 @@ assignment/
 ```
 
 ### 🚀 How It Works
-- 1. Memory Extraction Pipeline
+### 1. Memory Extraction Pipeline
 ```
 User Messages (30) → extract_personality() → LLM Output (JSON)
              ↓
@@ -73,19 +73,19 @@ User Messages (30) → extract_personality() → LLM Output (JSON)
 
 - The extractor retrieves:
 
-- "preferences"
+ - "preferences"
 
-- "facts"
+ - "facts"
 
-- "emotions"
+ - "emotions"
 
 - with strong constraints like:
 
-- No hallucinations
+ - No hallucinations
 
-- Only repeated traits
+ - Only repeated traits
 
-- Must match stable long-term info
+ - Must match stable long-term info
 
 
 ### 2. Personality Transformation
