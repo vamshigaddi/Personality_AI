@@ -151,3 +151,7 @@ User Messages (30) → extract_personality() → LLM Output (JSON)
   "personality": "calm_mentor"
 }
 ```
+
+### test the application here
+- Deployed on Render
+- https://personality-ai-2.onrender.com/docs
