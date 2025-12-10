@@ -50,7 +50,7 @@ Clean, modular, production-friendly.
 ---
 
 ## 📂 Project Structure
-
+```
 assignment/
 │
 ├── api.py                   # FastAPI server entrypoint
@@ -59,56 +59,57 @@ assignment/
 ├── personality_engine.py    # Tone transformation engine
 ├── .env                     # API keys (not included)
 └── requirements.txt
+```
 
-
-🚀 How It Works
-1. Memory Extraction Pipeline
-
+### 🚀 How It Works
+- 1. Memory Extraction Pipeline
+```
 User Messages (30) → extract_personality() → LLM Output (JSON)
              ↓
        merge_memory()
              ↓
      Stored in MongoDB
+```
+
+- The extractor retrieves:
+
+- "preferences"
+
+- "facts"
+
+- "emotions"
+
+- with strong constraints like:
+
+- No hallucinations
+
+- Only repeated traits
+
+- Must match stable long-term info
 
 
-The extractor retrieves:
-
-"preferences"
-
-"facts"
-
-"emotions"
-
-with strong constraints like:
-
-No hallucinations
-
-Only repeated traits
-
-Must match stable long-term info
+### 2. Personality Transformation
+- Assistant Reply → rewrite via Gemini → New Tone Applied
 
 
-2. Personality Transformation
-Assistant Reply → rewrite via Gemini → New Tone Applied
+- Each personality has explicit:
+
+- Tone
+
+- Speech rules
+
+- Allowed expressions
+
+- Forbidden patterns (e.g., “don’t add explanations”)
 
 
-Each personality has explicit:
+### 🔌 API Endpoints
 
-Tone
+- POST /extract-memory
 
-Speech rules
-
-Allowed expressions
-
-Forbidden patterns (e.g., “don’t add explanations”)
-
-
-🔌 API Endpoints
-POST /extract-memory
-
-Extracts memory and updates the DB.
-Request
-
+- Extracts memory and updates the DB.
+- Request
+```
 {
   "user_id": "user123",
   "messages": [
@@ -117,8 +118,9 @@ Request
     "I'm working as a graphic designer."
   ]
 }
-
-Response
+````
+- Response
+```
 {
   "status": "success",
   "memory": {
@@ -129,20 +131,23 @@ Response
     "history_counts": { ... }
   }
 }
+```
+- POST /transform-reply
 
-POST /transform-reply
+- Rewrite a message into a selected personality.
 
-Rewrite a message into a selected personality.
-
-Request
+- Request
+```
 {
   "base_reply": "You should try taking breaks during your work.",
   "personality": "calm_mentor"
 }
-
-Response
+```
+- Response
+```
 {
   "before": "You should try taking breaks during your work.",
   "after": "Take a moment to step away now and then. It helps your mind settle.",
   "personality": "calm_mentor"
 }
+```
